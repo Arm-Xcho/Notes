@@ -1,5 +1,6 @@
 package com.example.notes.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +19,12 @@ import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.Random
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var binding: FragmentHomeBinding? = null
-    private val viewModel: HomeViewModel by viewModels(){
+    private val viewModel: HomeViewModel by viewModels() {
         NotesViewModelFactory(requireContext())
     }
 
@@ -36,7 +38,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.note
             .flowWithLifecycle(lifecycle)
-            .filterNotNull ()
+            .filterNotNull()
             .onEach { note ->
                 binding?.run {
                     etTitle.setText(note.title)
@@ -50,17 +52,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 val note = Note(
                     title = etTitle.text?.toString().orEmpty(),
                     content = etNote.text?.toString().orEmpty(),
-                    color = 0,
+                    color = getRandomColor(),
                 )
                 viewModel.saveOrUpdateNote(note)
                 parentFragmentManager.popBackStack()
             }
 
-            btnDelete.setOnClickListener{
+            btnDelete.setOnClickListener {
                 viewModel.deleteNote()
                 parentFragmentManager.popBackStack()
             }
         }
+    }
+
+    fun getRandomColor(): Int {
+        val rnd = Random()
+        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
     }
 
     override fun onDestroyView() {

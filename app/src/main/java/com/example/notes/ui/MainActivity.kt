@@ -3,8 +3,6 @@ package com.example.notes.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
-import com.example.notes.databinding.ActivityMainBinding
 import com.example.notes.ui.note.NoteFragment
 import com.example.notes.R
 

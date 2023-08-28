@@ -8,6 +8,6 @@ class GetAllNotesRepositoryImpl(
     private val notesDao: NotesDao
 ) : GetAllNotesRepository {
 
-    override fun geetAllNotes(): Flow<List<Note>> =
+    override fun getAllNotes(): Flow<List<Note>> =
         notesDao.getAllNotes()
 }

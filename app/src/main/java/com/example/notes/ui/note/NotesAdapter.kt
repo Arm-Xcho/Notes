@@ -1,11 +1,13 @@
 package com.example.notes.ui.note
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.notes.data.entity.Note
 import com.example.notes.databinding.ItemNoteBinding
+import java.util.Random
 
 class NotesAdapter(
     private val onClick: (Note) -> Unit,
@@ -34,9 +36,8 @@ class NotesAdapter(
     ) : ViewHolder(viewBinding.root) {
         fun bind(item: Note) = with(viewBinding) {
             root.setOnClickListener { onClick(item) }
-
             tvTitle.text = item.title
-            tvContent.text = item.content
+            tvTitle.setBackgroundColor(item.color)
         }
     }
 }

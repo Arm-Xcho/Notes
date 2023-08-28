@@ -1,5 +1,6 @@
 package com.example.notes.ui.note
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.notes.ui.NotesViewModelFactory
 import com.example.notes.ui.home.HomeFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.Random
 
 class NoteFragment : Fragment(R.layout.fragment_note) {
 
